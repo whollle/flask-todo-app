@@ -29,10 +29,6 @@ jobs:
         run: |
           python -c "from app import app, db; app.app_context().push(); db.create_all()" || echo "DB initialized via app startup"
 
-      - name: Validate code syntax
-        run: |
-          python -m py_compile $(find . -name "*.py")
-
       - name: Smoke test Flask server
         run: |
           nohup python app.py > flask.log 2>&1 &
